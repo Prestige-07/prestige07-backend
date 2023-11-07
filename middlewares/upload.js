@@ -13,6 +13,7 @@ const multerConfig = multer.diskStorage({
 const upload = multer({ storage: multerConfig }).fields([
   { name: "before", maxCount: 1 },
   { name: "after", maxCount: 1 },
+  { name: "employee", maxCount: 1 },
 ]);
 
 module.exports = upload;

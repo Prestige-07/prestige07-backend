@@ -12,6 +12,7 @@ const employeeSchema = new Schema(
     phone: String,
     criminal: Boolean,
     worksFromDate: String,
+    images: Array,
   },
   { versionKey: false, timestamps: true }
 );
@@ -32,6 +33,9 @@ const addEmployeeSchema = joi.object({
   }),
   worksFromDate: joi.string().messages({
     "string.base": "Поле дата повинно бути реченням",
+  }),
+  images: joi.array().messages({
+    "array.base": "Поле дата повинно бути масивом",
   }),
 });
 

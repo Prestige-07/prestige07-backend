@@ -25,22 +25,8 @@ const deleteImageFromCloudinary = async (imageId) => {
   try {
     await cloudinary.uploader.destroy(imageId);
   } catch (error) {
-    throw HttpError(400, "Invalid request for deleting image");
+    throw HttpError(400, "Помилка видалення. Повторіть спробу");
   }
 };
-
-// const deleteImageFromCloudinary = async (imageUrlFromCloudinary) => {
-//   try {
-//     const lastDotIndex = imageUrlFromCloudinary.lastIndexOf(".");
-//     const lastSlashIndex = imageUrlFromCloudinary.lastIndexOf("/");
-//     const imageId = imageUrlFromCloudinary.substring(
-//       lastSlashIndex + 1,
-//       lastDotIndex
-//     );
-//     await cloudinary.uploader.destroy(imageId);
-//   } catch (error) {
-//     throw HttpError(400, "Invalid request for deleting image");
-//   }
-// };
 
 module.exports = { uploadImageToCloudinary, deleteImageFromCloudinary };

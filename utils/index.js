@@ -11,6 +11,10 @@ const {
   workScheduleRegexp,
 } = require("./regexp");
 
+const sendNotificication = require("./nodemailer");
+
+const formatedDate = require("./formatedDate");
+
 module.exports = {
   uploadImageToCloudinary,
   deleteImageFromCloudinary,
@@ -19,4 +23,6 @@ module.exports = {
   stringRegexp,
   phoneRegexp,
   workScheduleRegexp,
+  sendNotificication,
+  formatedDate,
 };

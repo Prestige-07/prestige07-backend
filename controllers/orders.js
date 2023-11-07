@@ -1,9 +1,18 @@
 const { Order } = require("../models/order");
 
 const { HttpError, ctrlWrapper } = require("../helpers");
+const { sendNotificication, formatedDate } = require("../utils");
 
 const addOrder = async (req, res) => {
-  const { services } = req.body;
+  const {
+    services,
+    clientName,
+    clientPhone,
+    orderDate,
+    clientComment,
+    washer,
+    urgently,
+  } = req.body;
 
   // number of order generator
   const numberOfOrders = ((await Order.find()).length + 1).toString();
@@ -59,6 +68,17 @@ const addOrder = async (req, res) => {
   const result = await Order.create({
     ...req.body,
     ...data,
+  });
+
+  sendNotificication({
+    subject: `Нове замовлення ${orderNumber} ${urgently ? "Терміново!" : ""}`,
+    text: `
+    Ім'я клієнта ${clientName}
+    Контакти клієнта ${clientPhone}
+    Обрані дата та час заїзду: ${formatedDate(orderDate)}
+    Коментар: ${clientComment ? `${clientComment}` : ""}
+    Обраний працівник: ${washer ? `${washer}` : ""}
+    `,
   });
 
   res.status(201).json(result);
