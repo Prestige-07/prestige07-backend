@@ -143,7 +143,8 @@ const updateOrderByNumber = async (req, res) => {
     );
   }
 
-  if (data.discountPercent) {
+  if (data.discountPercent || data.discountPercent === 0) {
+    console.log(data.discountPercent);
     const totalWasherPayment = order.services.reduce((acc, service) => {
       const amount = service.amount ? service.amount : 1;
       const washerPayment = parseFloat(
