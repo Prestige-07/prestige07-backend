@@ -73,9 +73,9 @@ const addOrder = async (req, res) => {
   sendNotificication({
     subject: `Нове замовлення ${orderNumber} ${urgently ? "Терміново!" : ""}`,
     text: `
-    Ім'я клієнта ${clientName}
-    Контакти клієнта ${clientPhone}
-    Обрані дата та час заїзду: ${formatedDate(orderDate)}
+    Ім'я клієнта: ${clientName}
+    Контакти клієнта: ${clientPhone}
+    Обрані дата та час заїзду: ${orderDate ? formatedDate(orderDate) : ""}
     Коментар: ${clientComment ? `${clientComment}` : ""}
     Обраний працівник: ${washer ? `${washer}` : ""}
     `,
