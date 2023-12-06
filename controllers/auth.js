@@ -6,28 +6,28 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 
 const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = process.env;
 
-const register = async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = await User.findOne({ email });
+// const register = async (req, res) => {
+//   const { name, email, password } = req.body;
+//   const user = await User.findOne({ email });
 
-  if (user) {
-    throw HttpError(409, "Ел.пошта вже використовується");
-  }
+//   if (user) {
+//     throw HttpError(409, "Ел.пошта вже використовується");
+//   }
 
-  const hashPassword = await bcrypt.hash(password, 10);
+//   const hashPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({
-    name,
-    email: email.toLowerCase(),
-    password: hashPassword,
-  });
+//   const newUser = await User.create({
+//     name,
+//     email: email.toLowerCase(),
+//     password: hashPassword,
+//   });
 
-  res.status(201).json({
-    user: {
-      email: newUser.email,
-    },
-  });
-};
+//   res.status(201).json({
+//     user: {
+//       email: newUser.email,
+//     },
+//   });
+// };
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -113,45 +113,8 @@ const getAdministrators = async (req, res) => {
   res.json(result);
 };
 
-// const updateProfile = async (req, res) => {
-//   const { _id, email: userEmail } = req.user;
-//   const { name, email, phone, birthday, city } = req.body;
-
-//   if (email) {
-//     const user = await User.findOne({ email: email.toLowerCase() });
-//     if (user && user.email !== userEmail) {
-//       throw HttpError(409, "Email in use");
-//     }
-//   }
-
-//   const updates = {};
-//   if (name !== undefined) updates.name = name;
-//   if (email !== undefined) updates.email = email.toLowerCase();
-//   if (phone !== undefined) updates.phone = phone;
-//   if (birthday !== undefined) updates.birthday = birthday;
-//   if (city !== undefined) updates.city = city;
-
-//   await User.findByIdAndUpdate(_id, updates);
-
-//   res.json(updates);
-// };
-
-// const updateAvatar = async (req, res) => {
-//   const { _id, avatarURL } = req.user;
-//   const { path } = req.file;
-
-//   const image = await uploadImageToCloudinary(path);
-//   await User.findByIdAndUpdate(_id, { avatarURL: image.url });
-
-//   if (avatarURL) {
-//     await deleteImageFromCloudinary(avatarURL);
-//   }
-
-//   res.json({ avatarURL: image.url });
-// };
-
 module.exports = {
-  register: ctrlWrapper(register),
+  // register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
