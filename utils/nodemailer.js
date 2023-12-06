@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport(config);
 const sendNotificication = ({ subject, text }) => {
   const emailOptions = {
     from: "prestige.07@meta.ua",
-    to: "anatoliy.prestige07@gmail.com",
+    to: ["anatoliy.prestige07@gmail.com", "p.r.e.s.t.i.g.e.000007@gmail.com"],
     subject,
     text,
   };
